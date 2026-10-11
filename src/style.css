@@ -1,0 +1,226 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root,
+[data-theme='dark'] {
+  --bg: #0e0e12;
+  --text: #e8e8ef;
+  --muted: #9898a8;
+  --btn-bg: #1c1c24;
+  --btn-border: #3a3a48;
+  --btn-text: #d0d0dc;
+  --btn-hover-bg: #24242e;
+  --btn-hover-border: #5a5a6a;
+  --btn-active-bg: #252a38;
+  --btn-active-border: #6a8cc8;
+  --btn-active-text: #fff;
+  --tooltip-bg: rgba(20, 20, 28, 0.95);
+  --tooltip-border: #444;
+  --tooltip-text: #eee;
+  --tooltip-shadow: rgba(0, 0, 0, 0.45);
+  --canvas-bg: #121218;
+}
+
+[data-theme='light'] {
+  --bg: #f2f2f5;
+  --text: #1a1a22;
+  --muted: #5c5c6e;
+  --btn-bg: #ffffff;
+  --btn-border: #c8c8d4;
+  --btn-text: #2a2a36;
+  --btn-hover-bg: #ececf2;
+  --btn-hover-border: #a8a8b8;
+  --btn-active-bg: #e4eaf6;
+  --btn-active-border: #4a6ea8;
+  --btn-active-text: #122038;
+  --tooltip-bg: rgba(255, 255, 255, 0.96);
+  --tooltip-border: #c0c0cc;
+  --tooltip-text: #1a1a22;
+  --tooltip-shadow: rgba(0, 0, 0, 0.15);
+  --canvas-bg: #f7f7fa;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.header {
+  text-align: center;
+  padding: 1.25rem 1rem 0.75rem;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--btn-hover-border);
+  background: var(--btn-hover-bg);
+}
+
+@media (max-width: 520px) {
+  .theme-toggle {
+    position: static;
+    transform: none;
+  }
+}
+
+.subtitle {
+  margin: 0.35rem 0 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.toggles button {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.toggles button:hover {
+  border-color: var(--btn-hover-border);
+  background: var(--btn-hover-bg);
+}
+
+.toggles button.active {
+  border-color: var(--btn-active-border);
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+}
+
+.owned-form {
+  width: min(92vw, 520px);
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+.owned-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.owned-form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 4.5rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--btn-border);
+  border-radius: 6px;
+  background: var(--btn-bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.owned-form textarea:focus {
+  outline: 2px solid var(--btn-active-border);
+  outline-offset: 1px;
+}
+
+.owned-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.owned-actions button {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--btn-active-border);
+  border-radius: 6px;
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.owned-actions button:hover {
+  border-color: var(--btn-hover-border);
+  background: var(--btn-hover-bg);
+}
+
+.owned-status {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem 2rem;
+}
+
+.canvas-wrap {
+  position: relative;
+  width: min(92vw, 820px);
+  aspect-ratio: 1;
+}
+
+#wheel {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 280px;
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  background: var(--tooltip-bg);
+  border: 1px solid var(--tooltip-border);
+  font-size: 0.8rem;
+  color: var(--tooltip-text);
+  box-shadow: 0 4px 16px var(--tooltip-shadow);
+}

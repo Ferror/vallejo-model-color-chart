@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vallejo Model Color — Wheel</title>
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+        } catch (_) {
+          /* ignore */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-top">
+        <h1>Vallejo Model Color</h1>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to light theme">
+          Light
+        </button>
+      </div>
+      <p class="subtitle">12-segment hue wheel · radial tint / tone / shade / pure</p>
+      <div class="toggles" role="group" aria-label="Paint visibility">
+        <button type="button" data-mode="all" class="active">All</button>
+        <button type="button" data-mode="owned">Owned only</button>
+        <button type="button" data-mode="highlight">Highlight owned</button>
+      </div>
+      <form id="owned-form" class="owned-form">
+        <label for="owned-ids">Owned paint numbers</label>
+        <textarea
+          id="owned-ids"
+          name="owned-ids"
+          rows="3"
+          spellcheck="false"
+          placeholder="70.951, 70.766, 70.811"
+        ></textarea>
+        <div class="owned-actions">
+          <button type="submit">Apply</button>
+          <p id="owned-status" class="owned-status" aria-live="polite"></p>
+        </div>
+      </form>
+    </header>
+    <main class="main">
+      <div class="canvas-wrap">
+        <canvas id="wheel" width="800" height="800" aria-label="Color wheel"></canvas>
+        <div id="tooltip" class="tooltip" hidden></div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

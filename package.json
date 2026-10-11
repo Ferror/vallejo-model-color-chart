@@ -1,0 +1,17 @@
+{
+  "name": "vallejo-model-color-data",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "scripts": {
+    "prepare:paints": "node scripts/prepare-paints.mjs",
+    "dev": "npm run prepare:paints && vite",
+    "build": "npm run prepare:paints && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
